@@ -26,8 +26,6 @@ for i in xrange(len(videos)):
 for dirname in dirs:
   info = UserConfig(os.path.join(saving_dir, dirname, info_filename))
   egvideourl = info.get("egvideo")
-  if "nakazawa" in egvideourl:
-    print dirname
   standardegvideo = standard_name(egvideourl)
   matchedvideo = filter(lambda item: item[1] == standardegvideo, videos)
   if len(matchedvideo) > 0:
