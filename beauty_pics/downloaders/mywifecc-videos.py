@@ -47,7 +47,7 @@ for dirname in dirs:
       r = sess.head(videourl, allow_redirects=True)
       filename = re.match(r"^.*\/([^\/]+)$", r.url).group(1)
       filepath = os.path.join(saving_dir, dirname, filename)
-      if os.path.exists(filepath):
+      if filename.lower() in os.listdir(os.path.join(saving_dir, dirname)):
         continue
       tmpfilepath = filepath + ".download"
       tmpfile = open(tmpfilepath, "wb")
