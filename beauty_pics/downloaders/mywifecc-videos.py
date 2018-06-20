@@ -15,6 +15,7 @@ password = user_config.get("mywifecc", "password")
 info_filename = user_config.get("mywifecc", "info_filename")
 
 dirs = os.listdir(saving_dir)
+dirs = filter(lambda dirname: os.path.isdir(os.path.join(saving_dir, dirname)), dirs)
 
 sess = requests.session()
 sess.post(rooturl + "/login/comp", { "login_id": username, "passwd": password })
