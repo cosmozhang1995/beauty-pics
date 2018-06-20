@@ -44,7 +44,6 @@ for dirname in dirs:
     if videourl is None:
       continue
     try:
-      r = sess.head(videourl, allow_redirects=True)
       filename = re.match(r"^.*\/([^\/]+)$", r.url).group(1)
       filepath = os.path.join(saving_dir, dirname, filename)
       if filename.lower() in map(lambda x: x.lower(), os.listdir(os.path.join(saving_dir, dirname))):
