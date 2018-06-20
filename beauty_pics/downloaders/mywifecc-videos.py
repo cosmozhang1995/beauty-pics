@@ -45,7 +45,7 @@ for dirname in dirs:
       continue
     try:
       r = sess.head(videourl, allow_redirects=True)
-      filename = re.match(r"^.*\/([^\/]+)$", r.url).group(1).lower()
+      filename = re.match(r"^.*\/([^\/]+)$", r.url).group(1)
       filepath = os.path.join(saving_dir, dirname, filename)
       if os.path.exists(filepath):
         continue
