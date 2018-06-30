@@ -15,6 +15,7 @@ password = user_config.get("mywifecc", "password")
 info_filename = user_config.get("mywifecc", "info_filename")
 
 dirs = os.listdir(saving_dir)
+dirs = filter(lambda dirname: os.path.isdir(os.path.join(saving_dir, dirname)), dirs)
 
 sess = requests.session()
 sess.post(rooturl + "/login/comp", { "login_id": username, "passwd": password })
@@ -45,9 +46,9 @@ for dirname in dirs:
       continue
     try:
       r = sess.head(videourl, allow_redirects=True)
-      filename = re.match(r"^.*\/([^\/]+)$", r.url).group(1).lower()
+      filename = re.match(r"^.*\/([^\/]+)$", r.url).group(1)
       filepath = os.path.join(saving_dir, dirname, filename)
-      if os.path.exists(filepath):
+      if filename.lower() in map(lambda x: x.lower(), os.listdir(os.path.join(saving_dir, dirname))):
         continue
       tmpfilepath = filepath + ".download"
       tmpfile = open(tmpfilepath, "wb")

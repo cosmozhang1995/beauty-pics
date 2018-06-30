@@ -12,7 +12,7 @@ dirs = filter(lambda dirname: os.path.isdir(os.path.join(saving_dir, dirname)), 
 
 for dirname in dirs:
   filenames = os.listdir(os.path.join(saving_dir, dirname))
-  filenames = filter(lambda fname: re.match(r".*\.(mp4)", fname.lower()), filenames)
+  filenames = filter(lambda fname: re.match(r"^.*\.(mp4)$", fname.lower()), filenames)
   for filename in filenames:
     print "%s/%s" % (dirname, filename)
 
