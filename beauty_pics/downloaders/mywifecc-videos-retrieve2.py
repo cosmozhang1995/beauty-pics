@@ -24,7 +24,6 @@ for line in retrieve2_listfile.split("\n"):
   filename = line.split("/")[-1]
   filepath = os.path.realpath(os.path.join(retrieve_local_dir, line))
   try:
-    r = sess.head(videourl, allow_redirects=True)
     if os.path.exists(filepath):
       continue
     tmpfilepath = filepath + ".download"
@@ -33,8 +32,6 @@ for line in retrieve2_listfile.split("\n"):
     totallen = int(r.headers['Content-Length'])
     receivedlen = 0
     print "Downloading the video for %s" % line
-    if debug and debug_no_download:
-      continue
     prgbar = progressbar.ProgressBar(max_value=totallen, widgets = [
       "%-20s" % (filename),
       progressbar.Bar(),
